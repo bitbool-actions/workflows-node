@@ -28,18 +28,22 @@ on:
         required: false
         default: "true"
         type: string
-      DEPLOY_URL: 
+      DEPLOY_URL:
         required: false
-        default: "INVALID"        
+        default: "INVALID"
         type: string
       USE_PULL_REPO:
         required: false
-        type: string        
+        type: string
         default: "false"
-      USE_ENV_FILES: 
+      USE_ENV_FILES:
         required: false
-        default: "true"        
-        type: string             
+        default: "true"
+        type: string
+      DOCKER_TAGS_SEND_COMMIT_HASH_FIRST:
+        required: false
+        default: "false"
+        type: string
     secrets:
       DOCKER_PASSWORD:
         required: true
@@ -87,6 +91,7 @@ jobs:
           QEMU_SETUP: "${{ inputs.QEMU_SETUP }}"
           DOCKER_USER: "${{ inputs.DOCKER_USER }}"
           DOCKER_PASSWORD: "${{ secrets.DOCKER_PASSWORD }}"
+          DOCKER_TAGS_SEND_COMMIT_HASH_FIRST: "${{ inputs.DOCKER_TAGS_SEND_COMMIT_HASH_FIRST }}"
 
       - name: Build and push
         id: docker_build
